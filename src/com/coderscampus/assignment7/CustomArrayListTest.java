@@ -24,6 +24,16 @@ class CustomArrayListTest {
 	}
 	
 	@Test
+	void add_works_with(){
+		CustomList<String> sut = new CustomArrayList<>();
+		sut.add("First");
+		sut.add("Third");
+		sut.add(1, "Second");
+	
+		assertEquals("Third", sut.get(2));
+			
+	}
+	@Test
 	void should_throw_exception_when_getting_out_of_bounds () {
 		CustomList<Integer> sut = new CustomArrayList<>();
 		try {
@@ -115,5 +125,78 @@ class CustomArrayListTest {
 		// Assert
 		expectedSize = sut.getSize();		
 		assertEquals(21, expectedSize);
+	}
+	@Test
+	void delete_from_list(){
+		CustomList<String> myCustomList = new CustomArrayList<>();
+		myCustomList.add("First");
+		myCustomList.add("Third");
+		myCustomList.add(1, "Second");
+		myCustomList.remove(1);
+
+		assertEquals("Third", myCustomList.get(1));
+	}
+	
+	@Test
+	void add_sizeIncrease_works(){
+		CustomList<Integer> myCustomList = new CustomArrayList<>();
+		myCustomList.add(1);
+		myCustomList.add(2);
+		myCustomList.add(3);
+		myCustomList.add(4);
+		myCustomList.add(5);
+		myCustomList.add(6);
+		myCustomList.add(7);
+		myCustomList.add(8);
+		myCustomList.add(9);
+		myCustomList.add(10);
+		myCustomList.add(12);
+		myCustomList.add(3 ,4);
+		
+		assertEquals(4, myCustomList.get(3));	
+	}
+	
+	@Test
+	void should_add_one_item_at_specified_index() {
+		CustomList<Integer> sut = new CustomArrayList<>();
+		for (int i = 1; i < 5; i++) {
+			sut.add(i);
+		}
+
+		Integer expectedSizeBefore = sut.getSize();
+
+		sut.add(3, 8);
+
+		Integer expectedAddedItem = sut.get(3);
+		Integer expectedSizeAfter = sut.getSize();
+
+		assertEquals(4, expectedSizeBefore);
+		assertEquals(8, expectedAddedItem);
+		assertEquals(5, expectedSizeAfter);
+	}
+	
+	@Test
+	void should_add_one_item_to_list() {
+		// Arrange
+		CustomList<Integer> sut = new CustomArrayList<>();
+
+		// Act
+		sut.add(10);
+		Integer expectedItem = sut.get(0);
+		Integer expectedSize = sut.getSize();
+
+		// Assert
+		assertEquals(10, expectedItem);
+		assertEquals(1, expectedSize);
+	}
+	
+	@Test
+	void returns_false() {
+		CustomList<String> myCustomList = new CustomArrayList<>();
+		myCustomList.add("First");
+		myCustomList.add("Third");
+		myCustomList.add(1, "Second");
+		
+	System.out.println(myCustomList.get(2));
 	}
 }
